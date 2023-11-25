@@ -34,14 +34,16 @@ Alternatively, you can use Docker Compose for an easier setup:
 
 1. Update the docker-compose.yml file with your desired image name and tag:
 
-`version: "3.8"
+````
+version: "3.8"
 services:
   web:
     image: leescoresby/cal:v1  # Set the desired image name and tag
     ports:
       - "8080:80"
     stdin_open: true
-    tty: true`
+    tty: true
+````
 
 2. Run the Docker Compose:
 
@@ -59,7 +61,8 @@ The calculator app will be available at `http://localhost:8080` in your web brow
 
 - The docker-compose.yml before pushing the docker image to docker hub / not pulling the image from dockerhub.
 
-`version: "3.8"
+````
+version: "3.8"
 services:
   web:
     build: . #builds the image by using the docker file
@@ -68,7 +71,8 @@ services:
     ports:
       - "8080:80"
     stdin_open: true
-    tty: true`
+    tty: true
+````
 
 ## Contributing
 
