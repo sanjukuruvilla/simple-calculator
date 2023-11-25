@@ -3,7 +3,10 @@
 version: "3.8"
 services:
   web:
-    build: .
+    build: . #builds the image by using the docker file
+    image: your-username/image-name:tag [optional]  
+    # Set the desired image name and tag for the container; useful when pushing to Docker Hub
+    #If you are using the image option, don't use the build option; conflicts may arise.
     ports:
       - "8080:80"
     stdin_open: true
