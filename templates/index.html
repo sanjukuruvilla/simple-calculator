@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKCalculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .calculator {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            width: 300px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h2>Welcome to pycal</h2>
+        <input type="text" id="first_value" placeholder="Input your first value" required>
+        <input type="text" id="second_value" placeholder="Input your second value" required>
+        <select id="operation" required>
+            <option value="">Choose operation</option>
+            <option value="1">Addition</option>
+            <option value="2">Subtraction</option>
+            <option value="3">Multiplication</option>
+            <option value="4">Division</option>
+        </select>
+        <button onclick="calculate()">Calculate</button>
+        <h3 id="result"></h3>
+    </div>
+
+    <script>
+        function calculate() {
+            let first_value = parseFloat(document.getElementById("first_value").value);
+            let second_value = parseFloat(document.getElementById("second_value").value);
+            let operation = parseInt(document.getElementById("operation").value);
+
+            if (isNaN(first_value) || isNaN(second_value)) {
+                alert("Error: Both inputs should be numbers.");
+                return;
+            }
+
+            if (operation == 1) {
+                document.getElementById("result").innerText = "Result: " + (first_value + second_value);
+            } else if (operation == 2) {
+                document.getElementById("result").innerText = "Result: " + (first_value - second_value);
+            } else if (operation == 3) {
+                document.getElementById("result").innerText = "Result: " + (first_value * second_value);
+            } else if (operation == 4) {
+                if (second_value == 0) {
+                    alert("Error: Division by zero is not allowed.");
+                    return;
+                }
+                document.getElementById("result").innerText = "Result: " + (first_value / second_value);
+            } else {
+                alert("Error: Invalid operation selected.");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+#The compose file before pushin the docker image to docker hub
+
+version: "3.8"
+services:
+  web:
+    build: .
+    ports:
+      - "8080:80"
+    stdin_open: true
+    tty: true
