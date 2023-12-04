@@ -24,9 +24,9 @@ To build and run the Docker container locally, follow these steps:
 
 3. Run the Docker container:
 
-`docker run -p 8080:80 calculator-app`
+`docker run -p 8081:80 calculator-app`
 
-The calculator app will be accessible at `http://localhost:8080` in your web browser.
+The calculator app will be accessible at `http://localhost:8081` in your web browser.
 
 # Docker Compose
 
@@ -40,7 +40,7 @@ services:
   web:
     image: leescoresby/cal:v1  # Set the desired image name and tag
     ports:
-      - "8080:80"
+      - "8081:80"
     stdin_open: true
     tty: true
 ````
@@ -49,7 +49,7 @@ services:
 
 `docker-compose up`
 
-The calculator app will be available at `http://localhost:8080` in your web browser.
+The calculator app will be available at `http://localhost:8081` in your web browser.
 
 ## Notes:
 
@@ -69,7 +69,7 @@ services:
     #image: your-username/image-name:tag [optional]  # Set the desired image name and tag for the container; useful when pushing to Docker Hub
      #If you are using the image option, don't use the build option; conflicts may arise.
     ports:
-      - "8080:80"
+      - "8081:80"
     stdin_open: true
     tty: true
 ````
