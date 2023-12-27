@@ -3,7 +3,8 @@
 version: "3.8"
 services:
   web:
-    image: leescoresby/cal:v1  # Set the desired image name and tag
+    build: .  # Set the desired image name and tag
+    image: "leescoresby/multi-cal:latest"
     ports:
       - "8081:80"
     stdin_open: true
