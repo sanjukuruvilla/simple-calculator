@@ -1,52 +1,21 @@
-#----------------------Single-stage build, uncomment '#' to use---------------------
+# Use an official Python runtime as a parent image
+FROM python:3.8-slim
 
-#FROM python:3.11-alpine
-#WORKDIR /app
-
-##Create Virtual environment PATH
-#ENV PATH="/app/my-env/bin:$PATH"
-
-##Create the virtual environment
-#RUN python -m venv /app/my-env
-
-#RUN pip install Flask
-#COPY . /app
-#EXPOSE 80
-
-##Set a default entrypoint
-#ENTRYPOINT ["/app/my-env/bin/python3"]
-
-#CMD ["-u", "calculator.py"]
-
-
-#-----------------------multi-stage build, uncomment '#' to use---------------------
-
-##Stage1-build
-FROM python:3.11-alpine AS Build
+# Set the working directory to /app
 WORKDIR /app
 
-##Create Virtual environment PATH
-ENV PATH="/app/my-env/bin:$PATH"
-
-##Create the virtual environment
-RUN python -m venv /app/my-env
-
-##Install dependencies
-RUN pip install Flask
+# Copy the current directory contents into the container at /app
 COPY . /app
 
-##Stage2-Runtime
-FROM python:3.11-alpine AS Run
-WORKDIR /app
+# Install any needed packages specified in requirements.txt
+RUN pip install --trusted-host pypi.python.org Flask
 
-##Copy from the build stage
-COPY --from=Build /app /app
-
-##Expose port 80
+# Make port 80 available to the world outside this container
 EXPOSE 80
 
-##Set a default entrypoint
-ENTRYPOINT ["/app/my-env/bin/python3"]
+# Define environment variable
+ENV FLASK_APP=calculator.py
 
-##Run the App
-CMD ["-u","calculator.py"]
+# Run app.py when the container launches
+CMD ["flask", "run", "--host=0.0.0.0", "--port=80"]
+

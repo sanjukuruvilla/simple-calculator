@@ -1,11 +1,9 @@
-#Replace the leescoresby with your dockerhub username+imagename+version
+version: '3'
 
-version: "3.8"
 services:
   web:
-    build: .  # Set the desired image name and tag
-    image: "leescoresby/multi-cal:latest"
+    build: .
+    image: leescoresby/cal:latest
     ports:
       - "8081:80"
-    stdin_open: true
-    tty: true
+
