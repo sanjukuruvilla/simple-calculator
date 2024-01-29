@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: calculator
+  labels:
+    app: calculator
+spec:
+  replicas: 2  # Adjust the number of replicas based on your needs
+  selector:
+    matchLabels:
+      app: calculator
+  template:
+    metadata:
+      labels:
+        app: calculator
+    spec:
+      containers:
+      - name: calculator
+        image: leescoresby/cal:latest  # Update with your Docker image details
+        ports:
+        - containerPort: 8083

@@ -2,7 +2,6 @@ version: '3'
 
 services:
   web:
-    build: .
     image: leescoresby/cal:latest
     ports:
       - "8081:80"
