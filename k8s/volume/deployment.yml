@@ -17,13 +17,12 @@ spec:
       containers:
       - name: calculator
         image: leescoresby/cal:latest  # Update with your Docker image details
-        env:
-        # Define the environment variable
-        - name: DB-ENV # Notice that the case is different here
-                                     # from the key name in the ConfigMap.
-          valueFrom:
-            secretKeyRef:            # change SecretKeyRef to configMapkeyRef for configmap.yml
-              name: test-secret           
-              key: db-port
+        volumeMounts:
+          - name: db-connection
+            mountPath: /opt
         ports:
-        - containerPort: 8083
+          - containerPort: 8083
+      volumes:
+        - name: db-connection
+          configMap:           #change Secret to configMap and give name
+            name: db-port
